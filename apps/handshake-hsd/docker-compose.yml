@@ -6,18 +6,10 @@ services:
     restart: on-failure
     stop_grace_period: 1m
     ports:
-      - '12037:12037'
+      - '$APP_HANDSHAKE_HSD_PORT:$APP_HANDSHAKE_HSD_PORT'
     volumes:
       - '${APP_DATA_DIR}/data:/data'
-    command: |
-      --prefix /data\
-      --wallet-http-host '::'\
-      --wallet-api-key 'd296741d-8c96-4d77-b133-01b509f2041e'\
-      --wallet-wallet-auth true\
-      --http-host '::'\
-      --api-key 'ec3caeba-2fd3-4555-bdde-1955b21dd5b7' \
-      --log-level info \
-      --agent=sinpapeles/
+
     networks:
       default:
-        ipv4_address: $APP_BTC_RPC_EXPLORER_IP
+        ipv4_address: $APP_HANDSHAKE_HSD_IP
